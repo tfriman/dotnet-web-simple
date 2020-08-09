@@ -1,5 +1,5 @@
 metadata:
-  generate-name: dotnet-demo-
+  generateName: dotnet-demo-
 projects:
   - name: dotnet-web-simple
     source:
