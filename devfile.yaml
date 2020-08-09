@@ -1,9 +1,9 @@
 metadata:
   generateName: dotnet-demo-
 projects:
-  - name: dotnet-web-simple
+  - name: dotnet-web-demo
     source:
-      location: https://github.com/tfriman/dotnet-web-simple/
+      location: 'https://github.com/tfriman/dotnet-web-simple'
       type: git
 components:
   - id: redhat-developer/che-omnisharp-plugin/latest
@@ -40,8 +40,8 @@ components:
       - name: postgres
         port: 5432
         attributes:
-          discoverable: true
-          public: false
+          discoverable: 'true'
+          public: 'false'
 apiVersion: 1.0.0
 commands:
   - name: update dependencies
