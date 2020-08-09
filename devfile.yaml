@@ -1,5 +1,5 @@
 metadata:
-  name: dotnet-wpenc
+  generate-name: dotnet-demo-
 projects:
   - name: dotnet-web-simple
     source:
