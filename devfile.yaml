@@ -27,7 +27,7 @@ components:
     image: >-
       registry.redhat.io/codeready-workspaces/stacks-dotnet-rhel8@sha256:a79239d2b02f32275a4622fe2b2ab13851b0ac2f2744afae583ef47b9a645df0
   - type: dockerimage
-    image: registry.redhat.io/rhel8/postgresql-12:1-36
+    image: docker.io/postgres:12
     memoryLimit: 512Mi
     env:
       - name: POSTGRES_USER
