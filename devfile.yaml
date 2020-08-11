@@ -1,0 +1,90 @@
+---
+apiVersion: 1.0.0
+metadata:
+  generateName: dotnet-demo-
+
+projects:
+  - name: dotnet-web-demo
+    source:
+      location: 'https://github.com/tfriman/dotnet-web-simple'
+      type: git
+components:
+  - id: redhat-developer/che-omnisharp-plugin/latest
+    memoryLimit: 1024Mi
+    type: chePlugin
+    alias: omnisharp
+  - id: redhat-developer/netcoredbg-theia-plugin/latest
+    memoryLimit: 512Mi
+    type: chePlugin
+    alias: netcoredbg
+  - mountSources: true
+    endpoints:
+      - name: hello-endpoint
+        port: 5000
+    memoryLimit: 512Mi
+    type: dockerimage
+    volumes:
+      - name: nuget
+        containerPath: /home/jboss/.nuget
+    alias: dotnet
+    image: >-
+      registry.redhat.io/codeready-workspaces/stacks-dotnet-rhel8@sha256:a79239d2b02f32275a4622fe2b2ab13851b0ac2f2744afae583ef47b9a645df0
+  - type: dockerimage
+    alias: mysql
+    image: centos/mysql-57-centos7
+    env:
+      - name: MYSQL_USER
+        value: petclinic
+      - name: MYSQL_PASSWORD
+        value: password
+      - name: MYSQL_DATABASE
+        value: petclinic
+      - name: PS1
+        value: $(echo ${0})\\$
+    memoryLimit: 256Mi
+    endpoints:
+      - name: 'db'
+        port: 3306
+        attributes:
+          discoverable: "true"
+          public: "false"
+    mountSources: false
+
+commands:
+  - name: update dependencies
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-web-simple'
+        type: exec
+        command: dotnet restore
+        component: dotnet
+  - name: run
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-web-simple'
+        type: exec
+        command: dotnet run
+        component: dotnet
+  - name: build
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-web-simple'
+        type: exec
+        command: dotnet build
+        component: dotnet
+  - name: Launch .NET Web Application on Debug mode
+    actions:
+      - referenceContent: |
+          {
+            "version": "0.2.0",
+              "configurations": [
+                 {
+                    "type": "netcoredbg",
+                    "request": "launch",
+                    "program": "/projects/dotnet-web-simple/bin/Debug/netcoreapp3.1/web.dll",
+                    "args": [],
+                    "name": ".NET Core Launch (console)",
+                    "stopAtEntry": true,
+                    "preLaunchTask": "build",
+                    "console": "internalConsole"
+                  }
+              ]
+          }
+        type: vscode-launch
