@@ -4,7 +4,7 @@ metadata:
   generateName: dotnet-demo-
 
 projects:
-  - name: dotnet-web-demo
+  - name: dotnet-web-simple
     source:
       location: 'https://github.com/tfriman/dotnet-web-simple'
       type: git
