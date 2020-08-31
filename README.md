@@ -4,7 +4,7 @@ Very simple .net project for demoing .net on OpenShift and CodeReady Workspaces
 
 # Start using
 
-Start the workspace on demo system: [![Contribute](factory-contribute.svg)](https://codeready-codereadyws-operator.apps.ocp4.timofriman.com/factory?url=https://github.com/tfriman/dotnet-web-simple)
+Start the workspace on demo system: [![Contribute](factory-contribute.svg)](https://codeready-crw-operator.apps.ocp4.timofriman.com/factory?url=https://github.com/tfriman/dotnet-web-simple)
 
 # CodeReady Workspaces
 
