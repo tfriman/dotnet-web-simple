@@ -84,3 +84,8 @@ commands:
               ]
           }
         type: vscode-launch
+  - name: psql
+    actions:
+      - type: exec
+        command: psql -d user -U password
+        component: postgres
