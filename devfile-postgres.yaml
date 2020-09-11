@@ -33,6 +33,9 @@ components:
     alias: postgres
     image: postgres
     memoryLimit: 512Mi
+    volumes:
+    - name: postgresql-data
+      containerPath: /var/lib/postgresql/
     env:
       - name: POSTGRES_USER
         value: user
