@@ -91,5 +91,5 @@ commands:
     actions:
       - type: exec
         command: |
-          echo "CREATE TABLE ATABLE(ID INT NOT NULL);" | psql -d database -U user -
+          echo "CREATE TABLE ATABLE(ID INT NOT NULL);" | psql -d database -U user 
         component: postgres
